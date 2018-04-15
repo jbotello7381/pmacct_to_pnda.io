@@ -75,8 +75,8 @@ Using above schema, logstash keep exiting with the error “The datum” is not 
 
 <pre>
 [2018-03-26T06:43:07,617][ERROR][logstash.agent] Failed to execute action {:action=>LogStash::PipelineAction::
-Stop/pipeline_id:main,:exception=>"Avro::IO::AvroTypeError", :message=>"The datum {\"src\"=>\"netflow\",\"host\"=>
-\"ip-10-180-221-47\", \"timestamp\"=>1522046587325, \"rawdata\"=>\"{\\\"event_type\\\": \\\"purge\\\", 
+Stop/pipeline_id:main,:exception=>"Avro::IO::AvroTypeError", :message=>"The datum {\"src\"=>\"netflow\",\<b>"host\"</b>
+=>\"ip-10-180-221-47\", \"timestamp\"=>1522046587325, \"rawdata\"=>\"{\\\"event_type\\\": \\\"purge\\\", 
 \\\"as_src\\\": <<<removed>>, \\\"as_dst\\\":<<<removed>>>, \\\"peer_ip_src\\\": \\\"<<<removed>>>\\\", \\\"peer_ip_dst
 \\\": \\\"\\\", \\\"iface_in\\\": 658, \\\"iface_out\\\": 656, \\\"ip_src\\\": \\\<<<removed>>>\\\", \\\"net_src\\\": 
 \\\<<<removed>>>\\\", \\\"ip_dst\\\": \\\<<<removed>>>\\\", \\\"net_dst\\\": \\\<<<removed>>>\\\", \\\"mask_src\\\": 
