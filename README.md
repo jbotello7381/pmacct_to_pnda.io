@@ -340,6 +340,8 @@ M3OjExIiwgInBhY2tldHMiOiAzLCAiYnl0ZXMiOiAxNjksICJ3cml0ZXJfaWQiOiAiZGVmYXVsdF9rYW
 I haven’t try it yet, however in theory we could decode the avro message using avro tools available here and using the
 pnda data preparation guide
 
+https://github.com/pndaproject/pnda-guide/blob/develop/producer/data-preparation.md
+
 ## Configuration Files
 
 ### PMACCT Netflow producer
