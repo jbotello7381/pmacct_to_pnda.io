@@ -69,7 +69,7 @@ Namespace, type and name are part of avro envelop, and we don’t need to prepar
 However, timestamp, src, host_ip and rawdata need to exist in order for logstash to transform the input to avro
 encoding. 
 
-PNDA.IO documentation is not reliable and we have experience this in different ways.  In this case is not exception.  
+PNDA.IO documentation may have some inconsistencies and we have experience this in different ways.  
 
 Using above schema, logstash keep exiting with the error “The datum” is not an example of the schema.
 
