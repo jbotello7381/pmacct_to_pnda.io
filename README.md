@@ -32,6 +32,7 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 
 However, the flow record information is still there.
 
+
 ##Solution
 
 Directly from Logstash website.
@@ -43,9 +44,10 @@ data for diverse advanced downstream analytics and visualization use cases.
 The idea here is to use logstash to translate from pmacct netflow/ipfix (json encoded) to pnda.io avro via a kafka
 message bus.
 
+
 ###Putting things together
 
-Add diagram here
+![High Level](https://github.com/jbotello7381/pmacct_to_pnda.io/blob/master/Diagram.PNG)
 
 In order to do this, we need to populate the data defined by pnda avro schema using the json input message coming
 from pmacct.
@@ -97,6 +99,7 @@ There are two ways to fix this,
 - Fix the schema to match what logstash set or
 - Change the field or add it using logstash configuration (preferable).
 
+
 ###Option A
 <pre>
 {  
@@ -114,6 +117,7 @@ There are two ways to fix this,
 
 Here we changed the field "name": "host_ip" to "host".  Please be aware making this change may break something on the
 PNDA side.  This is why this is not preferable.
+
 
 ####Logstash Configuration
 <pre>
@@ -152,6 +156,7 @@ output {
     }
 }
 </pre>
+
 
 ###Option B (Preferable)
 Translate or add host_ip field
@@ -221,8 +226,10 @@ serialized_value_size=714) {u'timestamp': 1522042861182, u'host': u'ip_10.180.22
 u'netflow'}
 </pre>
 
+
 ##How to setup a simple test environment
 Best way to validate the complete workflow, we can perform the following task
+
 
 ###Collect a sample of the data sent by pmacct
 
@@ -340,7 +347,9 @@ M3OjExIiwgInBhY2tldHMiOiAzLCAiYnl0ZXMiOiAxNjksICJ3cml0ZXJfaWQiOiAiZGVmYXVsdF9rYW
 I haven’t try it yet, however in theory we could decode the avro message using avro tools available here and using the
 pnda data preparation guide
 
+
 ##Configuration Files
+
 
 ###PMACCT Netflow producer
 https://github.com/pmacct/pmacct.git
@@ -409,10 +418,16 @@ output {
 </pre>
 
 ##Reference
+
 http://www.pmacct.net/
+
 http://pnda.io
+
 https://www.elastic.co/products/logstash
+
 https://avro.apache.org/
+
 https://kafka.apache.org/
+
 
 
