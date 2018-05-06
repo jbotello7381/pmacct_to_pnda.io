@@ -2,17 +2,17 @@ PMACCT to PNDA.IO Communication
 ===============================
 
 ## Problem
-PNDA.IO use avro as part of how data is serialized/encoded/decoded in and out of kafka.  Currently, it use kafka
-ByteArraySerialization.  PMACCT is a multipurpose of passive monitoring tools that can collect, aggregate, replicate
+PNDA.IO use avro as part of how data is serialized/encoded/decoded in and out of kafka.  Currently, it uses kafka
+ByteArraySerialization.  PMACCT is multipurpose of passive monitoring tools that can collect, aggregate, replicate
 and export forwarding plane data (ipv4/ipv6) as flow records.  As part of its capabilities, it can forward these
-flow records via kafka messages with avro encoding.   However, current kafka plugin doesn’t seems to support byte array 
+flow records via kafka messages with avro encoding.   However, current kafka plugin doesn’t seem to support byte array
 serialization of the data inside the kafka messages.
 
 In order to demonstrate this, we configure pmacct to use kafka messages and avro serialization.  
 
 IPFix (netflow ver 10) records are collected by pmacct and sent it to pnda kafka bus.   After these messages are
 collected and then stored in pnda hdfs, if we try to decode the information inside those files, we clearly see that
-pnda can’t deserialize the messages and store then, it move them into a quarantine folder.
+pnda can’t deserialize the messages and store then, it moves them into a quarantine folder.
 
 
 <pre>
@@ -65,7 +65,7 @@ This is pnda avro schema:
 }
 </pre>
 
-Namespace, type and name are part of avro envelop, and we don’t need to prepare the data to match those fields.   
+Namespace, type and name are part of avro envelope, and we don’t need to prepare the data to match those fields.   
 However, timestamp, src, host_ip and rawdata need to exist in order for logstash to transform the input to avro
 encoding. 
 
@@ -91,7 +91,7 @@ Stop/pipeline_id:main,:exception=>"Avro::IO::AvroTypeError", :message=>"The datu
 Normally this problem can mean a couple of things.  Data type doesn’t match (bytes vs string, etc) or one of the names
 inside the fields array.
 
-If we look closer, host is what logstash generated doesn’t match what  pnda avro schema expect.
+If we look closer, host is what logstash generated doesn’t match what pnda avro schema expect.
 
 There are two ways to fix this, 
 - Fix the schema to match what logstash set or
@@ -238,7 +238,7 @@ DEBUG ( default_kafka/kafka ): {"event_type": "purge", "as_src": <<<removed>>>, 
 "default_kafka/25167"}
 </pre>
 
-Save content of the sample (only the json part) into a file
+Save the content of the sample (only the json part) into a file
 
 Use the sample as input to logstash test configuration (**test_v1.conf**)
 
@@ -291,7 +291,7 @@ ubuntu@ip-10-180-221-47:~/logstash-6.2.3$ bin/logstash -f test_v1.conf < input.j
 </pre>
 
 The above configuration take the json input (input.json) and use the configuration (test_v1.conf) and send the output 
-of rubydebug codec (very useful) to stdout.
+of ruby debug codec (very useful) to stdout.
 
 ***Notice “host” field, which didn’t match pnda.io documented avro schema.***   
 
@@ -337,8 +337,8 @@ M3OjExIiwgInBhY2tldHMiOiAzLCAiYnl0ZXMiOiAxNjksICJ3cml0ZXJfaWQiOiAiZGVmYXVsdF9rYW
 :thread=>"#<Thread:0x74899669 run>"}
 </pre>
 
-I haven’t try it yet, however in theory we could decode the avro message using avro tools available here and using the
-pnda data preparation guide
+I haven’t tried it yet, however, in theory, we could decode the avro message using avro tools available here and using
+the pnda data preparation guide
 
 https://github.com/pndaproject/pnda-guide/blob/develop/producer/data-preparation.md
 
